@@ -30,7 +30,7 @@ legend {
 </head>
 <body>
 
-	<form:form action="registerJP" method="POST" modelAttribute="jobSeeker">
+	<form:form action="registration_jp" method="POST" modelAttribute="jobProvider">
 		<table>
 			<tr>
 				<td>
@@ -60,7 +60,7 @@ legend {
 								<td><form:input path="Jp_city" label="City" /></td>
 							</tr>
 							<tr>
-								<td><form:select path="Jp_country" label="Country">
+								<td><form:select path="Jp_country" label="Country" defaultLabel="India">
 										<option value="India">India</option>
 										<option value="United Kingdom">United Kingdom</option>
 										<option value="United States">United States</option>

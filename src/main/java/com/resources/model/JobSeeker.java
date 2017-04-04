@@ -117,4 +117,13 @@ public class JobSeeker {
 		Js_repass = js_repass;
 	}
 
+	@Override
+	public String toString() {
+		return "JobSeeker [Js_id=" + Js_id + ", Js_name=" + Js_name + ", Js_email=" + Js_email + ", Js_phone="
+				+ Js_phone + ", Js_address=" + Js_address + ", Js_pin=" + Js_pin + ", Js_country=" + Js_country
+				+ ", Js_city=" + Js_city + ", Js_uname=" + Js_uname + ", Js_pass=" + Js_pass + ", Js_repass="
+				+ Js_repass + "]";
+	}
+	
+	
 }

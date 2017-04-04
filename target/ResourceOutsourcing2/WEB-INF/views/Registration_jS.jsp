@@ -43,28 +43,29 @@ legend {
 							<br />
 							<table>
 								<tr>
-									<td><form:input path="Js_name" label="Name"
-											requiredLabel="name" /></td>
+									<td><form:input path="Js_name" label="name" placeholder="Name"
+											/></td>
 								</tr>
 								<tr>
-									<td><form:input path="Js_email" label="Email" /></td>
+									<td><form:input path="Js_email" placeholder="Email" /></td>
 								</tr>
 								<tr>
-									<td><form:input path="Js_phone" label="Phone"
+									<td><form:input path="Js_phone" placeholder="Phone"
 											maxlength="10" /></td>
 								</tr>
 								<tr>
-									<td><form:textarea path="Js_address" label="Address"
+									<td><form:textarea path="Js_address" placeholder="Address"
 											cols="24" rows="4" /></td>
 								</tr>
 								<tr>
-									<td><form:input path="Js_pin" label="Pin" maxlength="6" /></td>
+									<td><form:input path="Js_pin" placeholder="Pin" maxlength="6" /></td>
 								</tr>
 								<tr>
-									<td><form:input path="Js_city" label="City" name="Js_city" /></td>
+									<td><form:input path="Js_city" placeholder="City" name="Js_city" /></td>
 								</tr>
 								<tr>
-									<td><form:select path="Js_country" label="Country"<%-- list="{'India','United Kingdom','United States'}" --%>>
+									<td><form:select path="Js_country" placeholder="Country">
+											<option>Country</option>
 											<option value="India">India</option>
 											<option value="United Kingdom">United Kingdom</option>
 											<option value="United States">United States</option>
@@ -77,13 +78,13 @@ legend {
 							<legend>&nbsp;Login Information&nbsp;</legend>
 							<table>
 								<tr>
-									<td><form:input path="Js_uname" label="User Name" /></td>
+									<td><form:input path="Js_uname" placeholder="User Name" /></td>
 								</tr>
 								<tr>
-									<td><form:input path="Js_pass" label="Password" /></td>
+									<td><form:input path="Js_pass" placeholder="Password" /></td>
 								</tr>
 								<tr>
-									<td><form:input path="Js_repass" label="Retype Password" /></td>
+									<td><form:input path="Js_repass" placeholder="Retype Password" /></td>
 								</tr>
 								<tr>
 									<td align="right"><button type="Submit" value="Register Me"
