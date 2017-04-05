@@ -58,9 +58,9 @@ legend {
 									label="Current Work Location">
 								</form:select>
 							</tr>
-							<tr>
+							<%-- <tr>
 								<form:file name="upload" label="Upload Resume Here"></form:file>
-							</tr>
+							</tr> --%>
 							<tr>
 								<td>Submit :</td>
 								<td align="right"><button type="Submit" value="Submit"

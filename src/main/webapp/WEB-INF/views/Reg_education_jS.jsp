@@ -1,3 +1,10 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8" %>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored="false" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -81,8 +88,7 @@ legend {
 </style>
 </head>
 <body>
-	<%@taglib uri="/struts-tags" prefix="s"%>
-	<s:form id="frm1" action="JobSeek_Education">
+	<form id="frm1" action="JobSeek_Education">
 		<table>
 			<tr>
 				<td>
@@ -90,113 +96,113 @@ legend {
 						<legend>&nbsp;Academic Information&nbsp;</legend>
 						<table>
 							<tr>
-								<s:label label="Marks of 10th"></s:label>
+								<label label="Marks of 10th"></label>
 							</tr>
 							<tr>
-								<s:select label="Marks Type" list="{'Marks'}" name="Js_10"></s:select>
+								<select list="{'Marks'}" path="Js_10"></select>
 							</tr>
 							<tr>
-								<s:textfield label="Optain Marks" name="Js10_marks"
+								<input name="Js10_marks"
+									required="required"/>
+							</tr>
+							<tr>
+								<input path="Js10_total"
+									onblur="ten()" required="required"/>
+							</tr>
+							<tr>
+								<input path="Js10_avg" maxlength="6"/>
+							</tr>
+							<tr>
+								<input path="Js10_uni"
 									required="required"></s:textfield>
 							</tr>
 							<tr>
-								<s:textfield label="Total Marks" name="Js10_total"
-									onblur="ten()" required="required"></s:textfield>
+								<label label="Marks of 12th"></label>
 							</tr>
 							<tr>
-								<s:textfield label="Percentage" name="Js10_avg" maxlength="6"></s:textfield>
+								<select label="Marks Type" list="{'Marks'}" name="Js_12"></select>
 							</tr>
 							<tr>
-								<s:textfield label="Board Or University" name="Js10_uni"
-									required="required"></s:textfield>
+								<input path="Js12_marks"
+									required="required"/>
 							</tr>
 							<tr>
-								<s:label label="Marks of 12th"></s:label>
+								<input path="Js12_total"
+									onblur="t12()" required="required"/>
 							</tr>
 							<tr>
-								<s:select label="Marks Type" list="{'Marks'}" name="Js_12"></s:select>
+								<input path="Js12_avg" maxlength="6"/>
 							</tr>
 							<tr>
-								<s:textfield label="Optain Marks" name="Js12_marks"
-									required="required"></s:textfield>
+								<input path="Js12_uni"
+									required="required"/>
 							</tr>
 							<tr>
-								<s:textfield label="Total Marks" name="Js12_total"
-									onblur="t12()" required="required"></s:textfield>
+								<label label="Marks of Graduation"><label>
 							</tr>
 							<tr>
-								<s:textfield label="Percentage" name="Js12_avg" maxlength="6"></s:textfield>
+								<select label="Marks Type" list="{'Marks'}" name="Js_13"></select>
 							</tr>
 							<tr>
-								<s:textfield label="Board Or University" name="Js12_uni"
-									required="required"></s:textfield>
+								<input path="Js13_marks"
+									required="required"/>
 							</tr>
 							<tr>
-								<s:label label="Marks of Graduation"></s:label>
+								<input path="Js13_total"
+									onblur="t13()" required="required"/>
 							</tr>
 							<tr>
-								<s:select label="Marks Type" list="{'Marks'}" name="Js_13"></s:select>
+								<input path="Js13_avg" maxlength="6"/>
 							</tr>
 							<tr>
-								<s:textfield label="Optain Marks" name="Js13_marks"
-									required="required"></s:textfield>
+								<input path="Js13_uni"
+									required="required"/>
 							</tr>
 							<tr>
-								<s:textfield label="Total Marks" name="Js13_total"
-									onblur="t13()" required="required"></s:textfield>
+								<label label="Marks of Post Graduation"></label>
 							</tr>
 							<tr>
-								<s:textfield label="Percentage" name="Js13_avg" maxlength="6"></s:textfield>
+								<select label="Marks Type" list="{'Marks'}" name="Js_14"></select>
 							</tr>
 							<tr>
-								<s:textfield label="Board Or University" name="Js13_uni"
-									required="required"></s:textfield>
+								<input path="Js14_marks"/>
 							</tr>
 							<tr>
-								<s:label label="Marks of Post Graduation"></s:label>
+								<input path="Js14_total"
+									onblur="t14()"/>
 							</tr>
 							<tr>
-								<s:select label="Marks Type" list="{'Marks'}" name="Js_14"></s:select>
+								<input path="Js14_avg" maxlength="6"/>
 							</tr>
 							<tr>
-								<s:textfield label="Optain Marks" name="Js14_marks"></s:textfield>
+								<input path="Js14_uni"/>
 							</tr>
 							<tr>
-								<s:textfield label="Total Marks" name="Js14_total"
-									onblur="t14()"></s:textfield>
+								<label label="Other Diploma"></label>
 							</tr>
 							<tr>
-								<s:textfield label="Percentage" name="Js14_avg" maxlength="6"></s:textfield>
+								<select label="Marks Type" list="{'Marks'}" name="Js_15"></select>
 							</tr>
 							<tr>
-								<s:textfield label="Board Or University" name="Js14_uni"></s:textfield>
+								<input path="Js15_marks"/>
 							</tr>
 							<tr>
-								<s:label label="Other Diploma"></s:label>
+								<input path="Js15_total"
+									onblur="t15()"/>
 							</tr>
 							<tr>
-								<s:select label="Marks Type" list="{'Marks'}" name="Js_15"></s:select>
+								<input path="Js15_avg" maxlength="6"/>
 							</tr>
 							<tr>
-								<s:textfield label="Optain Marks" name="Js15_marks"></s:textfield>
+								<input path="Js15_uni"/>
 							</tr>
-							<tr>
-								<s:textfield label="Total Marks" name="Js15_total"
-									onblur="t15()"></s:textfield>
-							</tr>
-							<tr>
-								<s:textfield label="Percentage" name="Js15_avg" maxlength="6"></s:textfield>
-							</tr>
-							<tr>
-								<s:textfield label="Board Or University" name="Js15_uni"></s:textfield>
-							</tr>
-							<s:submit value="Submit" style="width:35%"></s:submit>
+							<submit value="Submit" style="width:35%"></submit>
 						</table>
 					</fieldset>
 
 				</td>
 			</tr>
 		</table>
-	</s:form>
+	</form>
 </body>
 </html>

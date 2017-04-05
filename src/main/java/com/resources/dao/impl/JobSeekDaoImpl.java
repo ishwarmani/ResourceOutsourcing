@@ -11,10 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.resources.dao.IJobSeekDao;
+import com.resources.model.JobProvider;
 import com.resources.model.JobSeeker;
-import com.ttnd.reap.model.Employee;
-import com.ttnd.reap.model.GivingBadges;
-import com.ttnd.reap.model.RecievedBadges;
 
 @Repository
 public class JobSeekDaoImpl implements IJobSeekDao{
@@ -48,12 +46,31 @@ public class JobSeekDaoImpl implements IJobSeekDao{
 	}
 	
 	public boolean register(JobSeeker jobSeeker) {
-
+//		System.out.println("hello");
 		Session session = sessionFactory.openSession();
 		Transaction transaction = null;
 		try {
 			transaction = session.beginTransaction();
 			session.save(jobSeeker);
+			transaction.commit();
+			return true;
+		} catch (Exception e) {
+			transaction.rollback();
+			e.printStackTrace();
+			return false;
+		} finally {
+			session.close();
+		}
+
+	}
+	
+	public boolean register(JobProvider jobProvider) {
+		System.out.println("hello");
+		Session session = sessionFactory.openSession();
+		Transaction transaction = null;
+		try {
+			transaction = session.beginTransaction();
+			session.save(jobProvider);
 			transaction.commit();
 			return true;
 		} catch (Exception e) {

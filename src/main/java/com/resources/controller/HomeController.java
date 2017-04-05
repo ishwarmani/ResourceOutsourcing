@@ -1,7 +1,6 @@
 package com.resources.controller;
 
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,12 +35,6 @@ public class HomeController {
 		if (employee == null) {
 			return new ModelAndView("login");
 		}
-//		else{
-//			if(employee.getUserRole().equals("Admin"))
-//				return new ModelAndView("redirect:admin");
-//			
-//			return new ModelAndView("redirect:index");
-//		}
 		return new ModelAndView("redirect:index");
 		
 	}
@@ -66,8 +59,6 @@ public class HomeController {
 		} 
 		else {
 			session.setAttribute("loggedInUser", jobSeeker);
-//			if(employee.getUserRole().equals("Admin"))
-//				return new ModelAndView("redirect:admin");
 			
 			return new ModelAndView("redirect:index");
 		}
@@ -86,77 +77,42 @@ public class HomeController {
 	@RequestMapping(value = "/registration_jS", method = RequestMethod.GET)
 	public ModelAndView register_JS(HttpSession session) {
 		JobSeeker user = (JobSeeker) session.getAttribute("loggedInUser");
-//		if (user == null) {
+		if (user == null) {
 			return new ModelAndView("Registration_jS", "jobSeeker", new JobSeeker());
-//		}
-	//	return new ModelAndView("Registration_jS");
-	}
-	
-	@RequestMapping(value = "/registration_jS", method = RequestMethod.POST)
-	public ModelAndView register_JSPost(@ModelAttribute("jobSeeker") JobSeeker jobSeeker,
-			 Model model, HttpSession session) {
-		System.out.println(jobSeeker);
-		JobSeeker jobSeekerSession = (JobSeeker) session.getAttribute("loggedInUser");
-		ModelAndView modelAndView = new ModelAndView();
-		if (jobSeekerSession != null) {
-			session.setAttribute("employee", jobSeeker);
-			modelAndView.setViewName("redirect:index");
-			return modelAndView;
 		}
+		return new ModelAndView("Registration_jS");
+	}
 
-		boolean flag = jobSeekService.register(jobSeeker);
-		if (flag) {
-			session.setAttribute("loggedInUser", jobSeeker);
-			modelAndView.setViewName("redirect:index");
-			return modelAndView;
-		} else {
-			modelAndView.addObject("msg", "Something went wrong! Please try again.");
-			modelAndView.setViewName("registration_jS");
-			modelAndView.addObject("jobSeeker", new JobSeeker());
-			return modelAndView;
-		}
+	@RequestMapping(value = "/registration_jS", method = RequestMethod.POST)
+	public ModelAndView register_JS(JobSeeker jobSeeker) {
+		
+		//System.out.println(jobSeekService);
+		System.out.println(jobSeekService.register(jobSeeker));
+		ModelAndView modelAndView = new ModelAndView("login");
+		//System.out.println(jobSeeker);
+		return modelAndView;
 	}
-	
-	
 	
 	@RequestMapping(value = "/registration_jp", method = RequestMethod.GET)
 	public ModelAndView register_JP(HttpSession session) {
-		JobProvider user = (JobProvider) session.getAttribute("loggedInUser");
-//		if (user == null) {
-			return new ModelAndView("registration_jp", "jobProvider", new JobProvider());
-//		}
-//		return new ModelAndView("Registration_jp");
+		JobSeeker user = (JobSeeker) session.getAttribute("loggedInUser");
+		if (user == null) {
+			return new ModelAndView("Registration_jp");
+		}
+		return new ModelAndView("Registration_jp");
 	}
-	
+
 	@RequestMapping(value = "/registration_jp", method = RequestMethod.POST)
-	public ModelAndView register_JpPost(@ModelAttribute("jobProvider") JobProvider jobProvider,
-			 Model model, HttpSession session) {
-
-		JobProvider jobSeekerSession = (JobProvider) session.getAttribute("loggedInUser");
-		ModelAndView modelAndView = new ModelAndView();
-		if (jobSeekerSession != null) {
-			session.setAttribute("jobProvider", jobProvider);
-			modelAndView.setViewName("redirect:index");
-			return modelAndView;
-		}
-
-		boolean flag = jobSeekService.register(jobProvider);
-		if (flag) {
-			session.setAttribute("loggedInUser", jobProvider);
-			modelAndView.setViewName("redirect:index");
-			return modelAndView;
-		} else {
-			modelAndView.addObject("msg", "Something went wrong! Please try again.");
-			modelAndView.setViewName("registration_jp");
-			modelAndView.addObject("jobSeeker", new JobSeeker());
-			return modelAndView;
-		}
+	public ModelAndView register_JP(JobProvider jobProvider) {
+		System.out.println(jobProvider);
+		System.out.println(jobSeekService.register(jobProvider));
+		return new ModelAndView("Registration_jp");
 	}
-	
-	/*@RequestMapping(value = "/register_js", method = RequestMethod.POST)
+
+	@RequestMapping(value = "/register_js", method = RequestMethod.POST)
 	public ModelAndView saveUser(@ModelAttribute("register") JobSeeker jobSeeker,
-							 Model model, HttpSession session) {
-	
+								 /*@RequestParam("imageFile") MultipartFile file,*/ Model model, HttpSession session) {
+
 		JobSeeker jobSeekerSession = (JobSeeker) session.getAttribute("loggedInUser");
 		ModelAndView modelAndView = new ModelAndView();
 		if (jobSeekerSession != null) {
@@ -177,5 +133,5 @@ public class HomeController {
 			return modelAndView;
 		}
 
-	}*/
+	}
 }
