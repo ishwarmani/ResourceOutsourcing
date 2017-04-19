@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.resources.dao.IJobSeekDao;
 import com.resources.model.JobProvider;
+import com.resources.model.JobSeek_Education;
 import com.resources.model.JobSeeker;
 
 @Repository
@@ -24,7 +25,6 @@ public class JobSeekDaoImpl implements IJobSeekDao{
 		this.sessionFactory = sessionFactory;
 	}
 
-	
 	public JobSeeker login(String username, String password) {
 		JobSeeker jobSeeker = null;
 		Session session = sessionFactory.openSession();
@@ -81,6 +81,25 @@ public class JobSeekDaoImpl implements IJobSeekDao{
 			session.close();
 		}
 
+	}
+
+
+	public boolean addJsEducation(JobSeek_Education jobSeek_Education) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.openSession();
+		Transaction transaction = null;
+		try {
+			transaction = session.beginTransaction();
+			session.save(jobSeek_Education);
+			transaction.commit();
+			return true;
+		} catch (Exception e) {
+			transaction.rollback();
+			e.printStackTrace();
+			return false;
+		} finally {
+			session.close();
+		}
 	}
 
 

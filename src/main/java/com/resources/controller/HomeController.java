@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.resources.model.JobProvider;
+import com.resources.model.JobSeek_Education;
 import com.resources.model.JobSeeker;
 import com.resources.service.IJobSeekService;
 
@@ -88,7 +89,7 @@ public class HomeController {
 		
 		//System.out.println(jobSeekService);
 		System.out.println(jobSeekService.register(jobSeeker));
-		ModelAndView modelAndView = new ModelAndView("login");
+		ModelAndView modelAndView = new ModelAndView("Reg_education_jS");
 		//System.out.println(jobSeeker);
 		return modelAndView;
 	}
@@ -133,5 +134,27 @@ public class HomeController {
 			return modelAndView;
 		}
 
+	}
+	
+	@RequestMapping(value = "/jobSeek_Education", method = RequestMethod.POST)
+	public ModelAndView reg_education_Js(JobSeek_Education jobSeek_Education) {
+		//JobSeeker employee = (JobSeeker) session.getAttribute("loggedInUser");
+//		if (employee == null) {
+		System.out.println(jobSeek_Education);
+		jobSeekService.addJsEducation(jobSeek_Education);
+			return new ModelAndView("jobseeker_home");
+//		}
+//		return new ModelAndView("redirect:index");
+		
+	}
+	
+	@RequestMapping(value = "/jobSeek_Education", method = RequestMethod.GET)
+	public ModelAndView reg_education_Js_get(HttpSession session) {
+		//JobSeeker employee = (JobSeeker) session.getAttribute("loggedInUser");
+//		if (employee == null) {
+			return new ModelAndView("Reg_education_jS");
+//		}
+//		return new ModelAndView("redirect:index");
+		
 	}
 }

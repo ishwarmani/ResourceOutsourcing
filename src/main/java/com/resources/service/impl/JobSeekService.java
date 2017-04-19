@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.resources.dao.IJobSeekDao;
 import com.resources.model.JobProvider;
+import com.resources.model.JobSeek_Education;
 import com.resources.model.JobSeeker;
 import com.resources.service.IJobSeekService;
 
@@ -27,6 +28,11 @@ public class JobSeekService implements IJobSeekService{
 	public boolean register(JobProvider jobProvider) {
 		// TODO Auto-generated method stub
 		return jobSeekDao.register(jobProvider);
+	}
+
+	public boolean addJsEducation(JobSeek_Education jobSeek_Education) {
+		// TODO Auto-generated method stub
+		return jobSeekDao.addJsEducation(jobSeek_Education);
 	}
 
 }

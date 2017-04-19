@@ -29,7 +29,7 @@
     </style>
 </head>
 <body>
-
+<%@ include file="header.jsp" %>
 <form action="registration_jp" method="POST">
     <table>
         <tr>
@@ -95,5 +95,6 @@
 
     </table>
 </form>
+<%-- <%@ include file="footer.jsp" %> --%>
 </body>
 </html>
