@@ -1,5 +1,10 @@
 package com.resources.dao;
 
-public interface IJobProviderDao {
+import com.resources.model.JobProvider;
 
+public interface IJobProviderDao {
+	
+	JobProvider login(String username, String password);
+
+	public boolean register(JobProvider jobProvider);
 }

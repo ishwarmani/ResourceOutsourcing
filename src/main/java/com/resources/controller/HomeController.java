@@ -17,64 +17,66 @@ import com.resources.service.IJobSeekService;
 
 @Controller
 public class HomeController {
-	
+
 	@Autowired
 	private IJobSeekService jobSeekService;
-	
+
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index(HttpSession session) {
 		JobSeeker jobSeeker = (JobSeeker) session.getAttribute("loggedInUser");
 		if (jobSeeker == null) {
 			return "login";
 		}
-		return "redirect:index";
+		return "redirect:/jobSeek_Education";
 	}
-	
+
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public ModelAndView loginSame(HttpSession session) {
+		System.out.println("i m inside get request");
 		JobSeeker employee = (JobSeeker) session.getAttribute("loggedInUser");
 		if (employee == null) {
 			return new ModelAndView("login");
 		}
-		return new ModelAndView("redirect:index");
-		
+		return new ModelAndView("redirect:/jobSeek_Education");
+
 	}
-	
+
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public ModelAndView loginCheck(@RequestParam("username") String username, @RequestParam("password") String password,
-			HttpSession session, Model model) {
-		
+	public ModelAndView loginCheck(
+			@RequestParam("username") String username,
+			@RequestParam("password") String password, HttpSession session, Model model) {
+		System.out.println("inside post");
 		JobSeeker jobSeeker = (JobSeeker) session.getAttribute("loggedInUser");
+		System.out.println("kdjnfnksjndsknfksdjfnjs");
 		if (jobSeeker != null) {
+			System.out.println("not null");
 			session.setAttribute("loggedInUser", jobSeeker);
-			return new ModelAndView("redirect:index");
+			return new ModelAndView("redirect:/jobSeek_Education");
 		}
 
-		//employee = employeeService.login(email, password);
+		// employee = employeeService.login(email, password);
 		jobSeeker = jobSeekService.login(username, password);
 		if (jobSeeker == null) {
 			ModelAndView modelAndView = new ModelAndView();
 			modelAndView.addObject("msg", "Sorry !     your credentials does not match as in our Database. Try again.");
 			modelAndView.setViewName("login");
 			return modelAndView;
-		} 
-		else {
+		} else {
 			session.setAttribute("loggedInUser", jobSeeker);
-			
-			return new ModelAndView("redirect:index");
+			return new ModelAndView("redirect:/jobSeek_Education");
 		}
 
 	}
-	
+
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public ModelAndView indexSame(HttpSession session) {
 		JobSeeker user = (JobSeeker) session.getAttribute("loggedInUser");
-//		if (user == null) {
-//			return new ModelAndView("register", "employee", new JobSeeker());
-//		}
+		// if (user == null) {
+		// return new ModelAndView("register", "employee", new JobSeeker());
+		// }
 		return new ModelAndView("Registration");
 	}
-	
+
 	@RequestMapping(value = "/registration_jS", method = RequestMethod.GET)
 	public ModelAndView register_JS(HttpSession session) {
 		JobSeeker user = (JobSeeker) session.getAttribute("loggedInUser");
@@ -86,14 +88,14 @@ public class HomeController {
 
 	@RequestMapping(value = "/registration_jS", method = RequestMethod.POST)
 	public ModelAndView register_JS(JobSeeker jobSeeker) {
-		
-		//System.out.println(jobSeekService);
+
+		// System.out.println(jobSeekService);
 		System.out.println(jobSeekService.register(jobSeeker));
 		ModelAndView modelAndView = new ModelAndView("Reg_education_jS");
-		//System.out.println(jobSeeker);
+		// System.out.println(jobSeeker);
 		return modelAndView;
 	}
-	
+
 	@RequestMapping(value = "/registration_jp", method = RequestMethod.GET)
 	public ModelAndView register_JP(HttpSession session) {
 		JobSeeker user = (JobSeeker) session.getAttribute("loggedInUser");
@@ -112,7 +114,7 @@ public class HomeController {
 
 	@RequestMapping(value = "/register_js", method = RequestMethod.POST)
 	public ModelAndView saveUser(@ModelAttribute("register") JobSeeker jobSeeker,
-								 /*@RequestParam("imageFile") MultipartFile file,*/ Model model, HttpSession session) {
+			/* @RequestParam("imageFile") MultipartFile file, */ Model model, HttpSession session) {
 
 		JobSeeker jobSeekerSession = (JobSeeker) session.getAttribute("loggedInUser");
 		ModelAndView modelAndView = new ModelAndView();
@@ -135,26 +137,28 @@ public class HomeController {
 		}
 
 	}
-	
+
 	@RequestMapping(value = "/jobSeek_Education", method = RequestMethod.POST)
 	public ModelAndView reg_education_Js(JobSeek_Education jobSeek_Education) {
-		//JobSeeker employee = (JobSeeker) session.getAttribute("loggedInUser");
-//		if (employee == null) {
+		// JobSeeker employee = (JobSeeker)
+		// session.getAttribute("loggedInUser");
+		// if (employee == null) {
 		System.out.println(jobSeek_Education);
 		jobSeekService.addJsEducation(jobSeek_Education);
-			return new ModelAndView("jobseeker_home");
-//		}
-//		return new ModelAndView("redirect:index");
-		
+		return new ModelAndView("jobseeker_home");
+		// }
+		// return new ModelAndView("redirect:index");
+
 	}
-	
+
 	@RequestMapping(value = "/jobSeek_Education", method = RequestMethod.GET)
 	public ModelAndView reg_education_Js_get(HttpSession session) {
-		//JobSeeker employee = (JobSeeker) session.getAttribute("loggedInUser");
-//		if (employee == null) {
-			return new ModelAndView("Reg_education_jS");
-//		}
-//		return new ModelAndView("redirect:index");
-		
+		// JobSeeker employee = (JobSeeker)
+		// session.getAttribute("loggedInUser");
+		// if (employee == null) {
+		return new ModelAndView("Reg_education_jS");
+		// }
+		// return new ModelAndView("redirect:index");
+
 	}
 }

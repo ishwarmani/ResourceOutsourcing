@@ -16,8 +16,8 @@ import com.resources.model.JobSeek_Education;
 import com.resources.model.JobSeeker;
 
 @Repository
-public class JobSeekDaoImpl implements IJobSeekDao{
-	
+public class JobSeekDaoImpl implements IJobSeekDao {
+
 	@Autowired
 	private SessionFactory sessionFactory;
 
@@ -26,6 +26,7 @@ public class JobSeekDaoImpl implements IJobSeekDao{
 	}
 
 	public JobSeeker login(String username, String password) {
+		System.out.println("inside login");
 		JobSeeker jobSeeker = null;
 		Session session = sessionFactory.openSession();
 		Transaction transaction = null;
@@ -44,33 +45,14 @@ public class JobSeekDaoImpl implements IJobSeekDao{
 
 		return jobSeeker;
 	}
-	
+
 	public boolean register(JobSeeker jobSeeker) {
-//		System.out.println("hello");
+		// System.out.println("hello");
 		Session session = sessionFactory.openSession();
 		Transaction transaction = null;
 		try {
 			transaction = session.beginTransaction();
 			session.save(jobSeeker);
-			transaction.commit();
-			return true;
-		} catch (Exception e) {
-			transaction.rollback();
-			e.printStackTrace();
-			return false;
-		} finally {
-			session.close();
-		}
-
-	}
-	
-	public boolean register(JobProvider jobProvider) {
-		System.out.println("hello");
-		Session session = sessionFactory.openSession();
-		Transaction transaction = null;
-		try {
-			transaction = session.beginTransaction();
-			session.save(jobProvider);
 			transaction.commit();
 			return true;
 		} catch (Exception e) {
@@ -101,6 +83,5 @@ public class JobSeekDaoImpl implements IJobSeekDao{
 			session.close();
 		}
 	}
-
 
 }
